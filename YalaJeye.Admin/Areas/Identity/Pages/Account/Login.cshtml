@@ -1,0 +1,89 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+@*<h1>@ViewData["Title"]</h1>*@
+@*<div class="row">*@
+<div class="login">
+    <div class="wrapper wrapper-login">
+        <div class="container container-login animated fadeIn">
+            <h3 class="text-center">Sign In To Admin</h3>
+            <form class="login-form" method="post" id="account">
+                <div class="form-group form-floating-label">
+                    <input class="form-control input-border-bottom" asp-for="Input.Email" required>
+                    <label asp-for="Input.Email" class="placeholder"></label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group form-floating-label">
+                    <input id="password" asp-for="Input.Password" class="form-control input-border-bottom" required>
+                    <label asp-for="Input.Password" class="placeholder"></label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    <div class="show-password">
+                        <i class="flaticon-interface"></i>
+                    </div>
+                </div>
+                <div class="row form-sub m-0">
+                    <div class="col col-md-6">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="rememberme">
+                            <label class="custom-control-label" for="rememberme">Remember Me</label>
+                        </div>
+                    </div>
+                    <div class="col col-md-6 login-forget">
+                        <a asp-page="./ForgotPassword" class="link">Forget Password ?</a>
+                    </div>
+                </div>
+                <div class="form-action">
+                    <button type="submit" class="btn btn-primary btn-rounded btn-login">Sign In</button>
+                </div>
+                <div class="login-account">
+                    <span class="msg">Don't have an account yet ?</span>
+                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="link">Sign Up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    
+        @*-----------------------------------------------------------------------------------------------------------------------------------*@
+        @*<div class="col-md-4">
+            <section>
+                <form id="account" method="post">
+                    <h1>Sign In To Admin</h1>
+                  
+                    <hr />
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Input.Email"></label>
+                        <input asp-for="Input.Email" class="form-control" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Password"></label>
+                        <input asp-for="Input.Password" class="form-control" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Log in</button>
+                    </div>
+                    <div class="form-group">
+                        <p>
+                            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                        </p>
+                        <p>
+                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                            </p>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+    </div>*@
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }

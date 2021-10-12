@@ -1,0 +1,1026 @@
+﻿
+@{
+	ViewBag.Title = "Dashboard | Admin";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Fonts and icons -->
+<script src="~/assets/js/plugin/webfont/webfont.min.js"></script>
+<script>
+		WebFont.load({
+			google: {"families":["Montserrat:100,200,300,400,500,600,700,800,900"]},
+			custom: {"families":["Flaticon", "LineAwesome"], urls: ['../assets/css/fonts.css']},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+</script>
+<!-- CSS Files -->
+<link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/assets/css/ready.min.css">
+
+<div class="content">
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="col-sm-6 col-md-3">
+				<div class="card card-stats card-round">
+					<div class="card-body ">
+						<div class="row">
+							<div class="col-5">
+								<div class="icon-big text-center">
+									<i class="flaticon-users"></i>
+								</div>
+							</div>
+							<div class="col-7 col-stats">
+								<div class="numbers">
+									<p class="card-category">Registered Users</p>
+									<h4 class="card-title">1,294</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3">
+				<div class="card card-stats  card-round">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-5">
+								<div class="icon-big text-center">
+									<i class="flaticon-interface-6"></i>
+								</div>
+							</div>
+							<div class="col-7 col-stats">
+								<div class="numbers">
+									<p class="card-category">Pending Invoices</p>
+									<h4 class="card-title">1303</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3">
+				<div class="card card-stats card-round">
+					<div class="card-body ">
+						<div class="row">
+							<div class="col-5">
+								<div class="icon-big text-center">
+									<i class="flaticon-graph"></i>
+								</div>
+							</div>
+							<div class="col-7 col-stats">
+								<div class="numbers">
+									<p class="card-category">Incomes</p>
+									<h4 class="card-title">$ 1,345</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3">
+				<div class="card card-stats card-round">
+					<div class="card-body ">
+						<div class="row">
+							<div class="col-5">
+								<div class="icon-big text-center">
+									<i class="flaticon-success"></i>
+								</div>
+							</div>
+							<div class="col-7 col-stats">
+								<div class="numbers">
+									<p class="card-category">Published Companies</p>
+									<h4 class="card-title">576</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+
+
+			<div class="col-md-3">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">Paid Invoices</h4>
+					</div>
+					<div class="card-body">
+						<div id="Revenues" class="chart-circle mt-4 mb-3"></div>
+					</div>
+					<div class="card-footer">
+						<div class="legend"><i class="la la-circle text-primary"></i> Count : 26</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">Published Businesses</h4>
+					</div>
+					<div class="card-body">
+						<div id="Delivered" class="chart-circle mt-4 mb-3"></div>
+					</div>
+					<div class="card-footer">
+						<div class="legend"><i class="la la-circle text-primary"></i> Count : 365</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">Paid Plans</h4>
+					</div>
+					<div class="card-body">
+						<div id="Purchase" class="chart-circle mt-4 mb-3"></div>
+					</div>
+					<div class="card-footer">
+						<div class="legend"><i class="la la-circle text-primary"></i> Count : 90</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">Manufacturers</h4>
+					</div>
+					<div class="card-body">
+						<div id="DealsSold" class="chart-circle mt-4 mb-3"></div>
+					</div>
+					<div class="card-footer">
+						<div class="legend"><i class="la la-circle text-primary"></i> Count : 20</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="row row-card-no-pd">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-head-row">
+							<h4 class="card-title">International Coverage</h4>
+							@*<div class="card-tools">
+									<a href="#" class="btn btn-primary btn-icon-only"><span class="icon flaticon-down-arrow"></span></a>
+									<a href="#" class="btn btn-primary btn-icon-only"><span class="icon flaticon-repeat"></span></a>
+									<a href="#" class="btn btn-primary btn-icon-only"><span class="icon flaticon-cross"></span></a>
+								</div>*@
+						</div>
+						<p class="card-category">
+							Map of the distribution of Scabrou Business Accounts around the world
+						</p>
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="table-responsive table-hover table-sales">
+									<table class="table">
+										<tbody>
+											<tr>
+												<td>
+													<div class="flag">
+														<img src="~/assets/img/flags/lb.png" alt="indonesia">
+													</div>
+												</td>
+												<td>Lebanon</td>
+												<td class="text-right">
+													2.320
+												</td>
+												<td class="text-right">
+													42.18%
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div class="flag">
+														<img src="~/assets/img/flags/us.png" alt="united states">
+													</div>
+												</td>
+												<td>USA</td>
+												<td class="text-right">
+													240
+												</td>
+												<td class="text-right">
+													4.36%
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div class="flag">
+														<img src="~/assets/img/flags/au.png" alt="australia">
+													</div>
+												</td>
+												<td>Australia</td>
+												<td class="text-right">
+													119
+												</td>
+												<td class="text-right">
+													2.16%
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div class="flag">
+														<img src="~/assets/img/flags/ru.png" alt="russia">
+													</div>
+												</td>
+												<td>Russia</td>
+												<td class="text-right">
+													1.081
+												</td>
+												<td class="text-right">
+													19.65%
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div class="flag">
+														<img src="~/assets/img/flags/cn.png" alt="china">
+													</div>
+												</td>
+												<td>China</td>
+												<td class="text-right">
+													1.100
+												</td>
+												<td class="text-right">
+													20%
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div class="flag">
+														<img src="~/assets/img/flags/br.png" alt="brazil">
+													</div>
+												</td>
+												<td>Brasil</td>
+												<td class="text-right">
+													640
+												</td>
+												<td class="text-right">
+													11.63%
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mapcontainer">
+									<div id="map-example" class="vmap"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" hidden>
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-head-row">
+							<div class="card-title">Order status</div>
+							<div class="card-tools">
+								<a href="#" class="btn btn-info btn-border btn-round btn-sm mr-2">
+									<span class="btn-label">
+										<i class="la la-pencil"></i>
+									</span>
+									View all
+								</a>
+
+							</div>
+						</div>
+					</div>
+					<div class="card-body">
+						<div class="chart-container">
+							<canvas id="statisticsChart"></canvas>
+						</div>
+						<div id="myChartLegend"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">Shopping stats</h4>
+						<p class="card-category">
+							Shopping percentages this month
+						</p>
+					</div>
+					<div class="card-body">
+						<div class="chart-container">
+							<canvas id="usersChart"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">Product Analytics</div>
+					</div>
+					<div class="card-body">
+						<div class="chart-container">
+							<canvas id="multipleLineChart"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">Company Analytics</div>
+					</div>
+					<div class="card-body">
+						<div class="chart-container">
+							<canvas id="multipleBarChart"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">Registered Users</div>
+					</div>
+					<div class="card-body">
+						<div class="chart-container">
+							<canvas id="lineChart"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">Published Businesses</div>
+					</div>
+					<div class="card-body">
+						<div class="chart-container">
+							<canvas id="barChart"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">Entry Type</div>
+					</div>
+					<div class="card-body">
+						<div class="chart-container">
+							<canvas id="pieChart" style="width: 50%; height: 50%"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">Business Status</div>
+					</div>
+					<div class="card-body">
+						<div class="chart-container">
+							<canvas id="doughnutChart" style="width: 50%; height: 50%"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+		@*<div class="row row-card-no-pd">
+				<div class="col-md-4 mt-3 mb-3">
+					<div class="card">
+						<div class="card-body">
+							<p class="fw-mediumbold mt-1">My Revenues</p>
+							<h4 class="text-primary"><b>$ 3,018</b></h4>
+							<a href="#" class="btn btn-primary btn-full text-left mt-3 mb-3"><i class="la la-eye"></i> View report</a>
+						</div>
+						<div class="card-footer mt-auto">
+							<ul class="nav">
+								<li class="nav-item"><a class="btn btn-default btn-link" href="#"><i class="la la-history"></i> History</a></li>
+								<li class="nav-item ml-auto"><a class="btn btn-default btn-link" href="#"><i class="la la-refresh"></i> Refresh</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-5 mt-3 mb-3">
+					<div class="card">
+						<div class="card-body">
+							<div class="progress-card">
+								<div class="d-flex justify-content-between mb-1">
+									<span class="text-muted">Incomes</span>
+									<span class="text-muted fw-bold"> $3K</span>
+								</div>
+								<div class="progress mb-2" style="height: 7px;">
+									<div class="progress-bar bg-success" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="78%"></div>
+								</div>
+							</div>
+							<div class="progress-card">
+								<div class="d-flex justify-content-between mb-1">
+									<span class="text-muted">Revenues</span>
+									<span class="text-muted fw-bold"> 576</span>
+								</div>
+								<div class="progress mb-2" style="height: 7px;">
+									<div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="65%"></div>
+								</div>
+							</div>
+							<div class="progress-card">
+								<div class="d-flex justify-content-between mb-1">
+									<span class="text-muted">Deals Incomes</span>
+									<span class="text-muted fw-bold"> 50K</span>
+								</div>
+								<div class="progress mb-2" style="height: 7px;">
+									<div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="70%"></div>
+								</div>
+							</div>
+							<div class="progress-card">
+								<div class="d-flex justify-content-between mb-1">
+									<span class="text-muted">Deals revenues</span>
+									<span class="text-muted fw-bold"> 30K</span>
+								</div>
+								<div class="progress mb-2" style="height: 7px;">
+									<div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="60%"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 mt-3 mb-3">
+					<div class="card card-stats">
+						<div class="card-body">
+							<p class="fw-mediumbold mt-1">Current stats</p>
+							<div class="row">
+								<div class="col-5">
+									<div class="icon-big text-center icon-warning">
+										<i class="la la-pie-chart text-warning"></i>
+									</div>
+								</div>
+								<div class="col-7 col-stats">
+									<div class="numbers">
+										<p class="card-category">In cart</p>
+										<h4 class="card-title">150GB</h4>
+									</div>
+								</div>
+							</div>
+							<hr />
+							<div class="row">
+								<div class="col-5">
+									<div class="icon-big text-center">
+										<i class="la la-heart-o text-primary"></i>
+									</div>
+								</div>
+								<div class="col-7 col-stats">
+									<div class="numbers">
+										<p class="card-category">In wishlist</p>
+										<h4 class="card-title">+45K</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>*@
+
+
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card card-round">
+					<div class="card-body">
+						<div class="card-title">Recent Users</div>
+						<div class="card-list">
+							<div class="item-list">
+								<img src="../assets/img/jm_denis.jpg" alt="denis" class="small-pic">
+								<div class="info-user ml-3">
+									<div class="username">Jimmy Denis</div>
+									<div class="status">Country: LEB | Email: jimmidenis@gmail.com | Entry : Business </div>
+								</div>
+								<a href="#" class="btn btn-add">
+									<i class="la la-plus"></i>
+								</a>
+							</div>
+							<div class="item-list">
+								<img src="../assets/img/jm_denis.jpg" alt="denis" class="small-pic">
+								<div class="info-user ml-3">
+									<div class="username">Jimmy Denis</div>
+									<div class="status">Country: LEB | Email: jimmidenis@gmail.com | Entry : Business </div>
+								</div>
+								<a href="#" class="btn btn-add">
+									<i class="la la-plus"></i>
+								</a>
+							</div>
+							<div class="item-list">
+								<img src="~/assets/img/jm_denis.jpg" alt="denis" class="small-pic">
+								<div class="info-user ml-3">
+									<div class="username">Jimmy Denis</div>
+									<div class="status">Country: LEB | Email: jimmidenis@gmail.com | Entry : Business </div>
+								</div>
+								<a href="#" class="btn btn-add">
+									<i class="la la-plus"></i>
+								</a>
+							</div>
+							<div class="item-list">
+								<img src="~/assets/img/jm_denis.jpg" alt="denis" class="small-pic">
+								<div class="info-user ml-3">
+									<div class="username">Jimmy Denis</div>
+									<div class="status">Country: LEB | Email: jimmidenis@gmail.com | Entry : Business </div>
+								</div>
+								<a href="#" class="btn btn-add">
+									<i class="la la-plus"></i>
+								</a>
+							</div>
+							<div class="item-list">
+								<img src="~/assets/img/jm_denis.jpg" alt="denis" class="small-pic">
+								<div class="info-user ml-3">
+									<div class="username">Jimmy Denis</div>
+									<div class="status">Country: LEB | Email: jimmidenis@gmail.com | Entry : Business </div>
+								</div>
+								<a href="#" class="btn btn-add">
+									<i class="la la-plus"></i>
+								</a>
+							</div>
+							<div class="item-list">
+								<img src="~/assets/img/jm_denis.jpg" alt="denis" class="small-pic">
+								<div class="info-user ml-3">
+									<div class="username">Jimmy Denis</div>
+									<div class="status">Country: LEB | Email: jimmidenis@gmail.com | Entry : Business </div>
+								</div>
+								<a href="#" class="btn btn-add">
+									<i class="la la-plus"></i>
+								</a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="col-md-6">
+				<div class="card card-round">
+					<div class="card-body">
+						<div class="card-title">Top visited Businesses</div>
+						<div class="card-list">
+							<div class="card-list">
+								<div class="item-list">
+									<img src="~/assets/img/jm_denis.jpg" alt="denis" class="small-pic">
+									<div class="info-user ml-3">
+										<div class="username">Jimmy Denis</div>
+										<div class="status">Country: LEB | Email: jimmidenis@gmail.com | Visits : 500 </div>
+									</div>
+									<a href="#" class="btn btn-add">
+										<i class="la la-plus"></i>
+									</a>
+								</div>
+								<div class="item-list">
+									<img src="~/assets/img/jm_denis.jpg" alt="denis" class="small-pic">
+									<div class="info-user ml-3">
+										<div class="username">Jimmy Denis</div>
+										<div class="status">Country: LEB | Email: jimmidenis@gmail.com | Visits : 500 </div>
+									</div>
+									<a href="#" class="btn btn-add">
+										<i class="la la-plus"></i>
+									</a>
+								</div>
+								<div class="item-list">
+									<img src="~/assets/img/jm_denis.jpg" alt="denis" class="small-pic">
+									<div class="info-user ml-3">
+										<div class="username">Jimmy Denis</div>
+										<div class="status">Country: LEB | Email: jimmidenis@gmail.com | Visits : 500 </div>
+									</div>
+									<a href="#" class="btn btn-add">
+										<i class="la la-plus"></i>
+									</a>
+								</div>
+								<div class="item-list">
+									<img src="~/assets/img/jm_denis.jpg" alt="denis" class="small-pic">
+									<div class="info-user ml-3">
+										<div class="username">Jimmy Denis</div>
+										<div class="status">Country: LEB | Email: jimmidenis@gmail.com | Visits : 500 </div>
+									</div>
+									<a href="#" class="btn btn-add">
+										<i class="la la-plus"></i>
+									</a>
+								</div>
+								<div class="item-list">
+									<img src="~/assets/img/jm_denis.jpg" alt="denis" class="small-pic">
+									<div class="info-user ml-3">
+										<div class="username">Jimmy Denis</div>
+										<div class="status">Country: LEB | Email: jimmidenis@gmail.com | Visits : 500 </div>
+									</div>
+									<a href="#" class="btn btn-add">
+										<i class="la la-plus"></i>
+									</a>
+								</div>
+								<div class="item-list">
+									<img src="~/assets/img/jm_denis.jpg" alt="denis" class="small-pic">
+									<div class="info-user ml-3">
+										<div class="username">Jimmy Denis</div>
+										<div class="status">Country: LEB | Email: jimmidenis@gmail.com | Visits : 500 </div>
+									</div>
+									<a href="#" class="btn btn-add">
+										<i class="la la-plus"></i>
+									</a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Chart JS -->
+<script src="~/assets/js/plugin/chart.js/chart.min.js"></script>
+<!-- Chart Circle -->
+<script src="~/assets/js/plugin/chart-circle/circles.min.js"></script>
+<!-- Datatables -->
+<script src="~/assets/js/plugin/datatables/datatables.min.js"></script>
+<!-- Bootstrap Notify -->
+<script src="~/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+<!-- Bootstrap Toggle -->
+<script src="~/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+<!-- jQuery Vector Maps -->
+<script src="~/assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
+<script src="~/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+<!-- Google Maps Plugin -->
+<script src="~/assets/js/plugin/gmaps/gmaps.js"></script>
+<!-- Dropzone -->
+<script src="~/assets/js/plugin/dropzone/dropzone.min.js"></script>
+<!-- Fullcalendar -->
+<script src="~/assets/js/plugin/fullcalendar/fullcalendar.min.js"></script>
+<!-- DateTimePicker -->
+<script src="~/assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js"></script>
+<!-- Bootstrap Tagsinput -->
+<script src="~/assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+<!-- Bootstrap Wizard -->
+<script src="~/assets/js/plugin/bootstrap-wizard/bootstrapwizard.js"></script>
+<!-- jQuery Validation -->
+<script src="~/assets/js/plugin/jquery.validate/jquery.validate.min.js"></script>
+<!-- Summernote -->
+<script src="~/assets/js/plugin/summernote/summernote-bs4.min.js"></script>
+<!-- Select2 -->
+<script src="~/assets/js/plugin/select2/select2.full.min.js"></script>
+<!-- Sweet Alert -->
+<script src="~/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+<!-- Ready Pro JS -->
+<script src="~/assets/js/ready.min.js"></script>
+
+<script src="~/assets/js/demo.js"></script>
+
+
+<script>
+
+	Circles.create({
+		id: 'Purchase',
+		radius: 75,
+		value: 20,
+		maxValue: 100,
+		width: 7,
+		text: function (value) { return value + '%'; },
+		colors: ['#eee', '#177dff'],
+		duration: 2000,
+		wrpClass: 'circles-wrp',
+		textClass: 'circles-text',
+		styleWrapper: true,
+		styleText: true
+	})
+
+	Circles.create({
+		id: 'Delivered',
+		radius: 75,
+		value: 90,
+		maxValue: 100,
+		width: 7,
+		text: function (value) { return value + '%'; },
+		colors: ['#eee', '#177dff'],
+		duration: 2000,
+		wrpClass: 'circles-wrp',
+		textClass: 'circles-text',
+		styleWrapper: true,
+		styleText: true
+	})
+
+
+	Circles.create({
+		id: 'Revenues',
+		radius: 75,
+		value: 30,
+		maxValue: 100,
+		width: 7,
+		text: function (value) { return value + '%'; },
+		colors: ['#eee', '#177dff'],
+		duration: 2000,
+		wrpClass: 'circles-wrp',
+		textClass: 'circles-text',
+		styleWrapper: true,
+		styleText: true
+	})
+
+	Circles.create({
+		id: 'DealsSold',
+		radius: 75,
+		value: 30,
+		maxValue: 100,
+		width: 7,
+		text: function (value) { return value + '%'; },
+		colors: ['#eee', '#177dff'],
+		duration: 2000,
+		wrpClass: 'circles-wrp',
+		textClass: 'circles-text',
+		styleWrapper: true,
+		styleText: true
+	})
+
+
+
+
+
+		var lineChart = document.getElementById('lineChart').getContext('2d'),
+		barChart = document.getElementById('barChart').getContext('2d'),
+		pieChart = document.getElementById('pieChart').getContext('2d'),
+		doughnutChart = document.getElementById('doughnutChart').getContext('2d'),
+
+		multipleLineChart = document.getElementById('multipleLineChart').getContext('2d'),
+		multipleBarChart = document.getElementById('multipleBarChart').getContext('2d')
+		;
+
+		var myLineChart = new Chart(lineChart, {
+			type: 'line',
+			data: {
+				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+				datasets: [{
+					label: "Users",
+					borderColor: "#1d7af3",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#1d7af3",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 900]
+				}]
+			},
+			options : {
+				responsive: true,
+				maintainAspectRatio: false,
+				legend: {
+					position: 'bottom',
+					labels : {
+						padding: 10,
+						fontColor: '#1d7af3',
+					}
+				},
+				tooltips: {
+					bodySpacing: 4,
+					mode:"nearest",
+					intersect: 0,
+					position:"nearest",
+					xPadding:10,
+					yPadding:10,
+					caretPadding:10
+				},
+				layout:{
+					padding:{left:15,right:15,top:15,bottom:15}
+				}
+			}
+		});
+
+		var myBarChart = new Chart(barChart, {
+			type: 'bar',
+			data: {
+				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+				datasets : [{
+					label: "Businesses",
+					backgroundColor: 'rgb(23, 125, 255)',
+					borderColor: 'rgb(23, 125, 255)',
+					data: [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4],
+				}],
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero:true
+						}
+					}]
+				},
+			}
+		});
+
+		var myPieChart = new Chart(pieChart, {
+			type: 'pie',
+			data: {
+				datasets: [{
+					data: [45, 55],
+					backgroundColor :["#1d7af3","#f3545d"],
+					borderWidth: 0
+				}],
+				labels: ['Individual', 'Business']
+			},
+			options : {
+				responsive: true,
+				maintainAspectRatio: false,
+				legend: {
+					position : 'bottom',
+					labels : {
+						fontColor: 'rgb(154, 154, 154)',
+						fontSize: 11,
+						usePointStyle : true,
+						padding: 20
+					}
+				},
+				pieceLabel: {
+					render: 'percentage',
+					fontColor: 'white',
+					fontSize: 14,
+				},
+				tooltips: false,
+				layout: {
+					padding: {
+						left: 20,
+						right: 20,
+						top: 20,
+						bottom: 20
+					}
+				}
+			}
+		})
+
+		var myDoughnutChart = new Chart(doughnutChart, {
+			type: 'doughnut',
+			data: {
+				datasets: [{
+					data: [10, 5, 85],
+					backgroundColor: ['#f3545d','#fdaf4b','#1d7af3']
+				}],
+
+				labels: [
+				'Rejected',
+				'Pending',
+				'Published'
+				]
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				legend : {
+					position: 'bottom'
+				},
+				layout: {
+					padding: {
+						left: 20,
+						right: 20,
+						top: 20,
+						bottom: 20
+					}
+				}
+			}
+		});
+
+
+
+		var myMultipleLineChart = new Chart(multipleLineChart, {
+			type: 'line',
+			data: {
+				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+				datasets: [{
+					label: "Impressions",
+					borderColor: "#1d7af3",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#1d7af3",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [30, 45, 45, 68, 69, 90, 100, 158, 177, 200, 245, 256]
+				},{
+					label: "Visits",
+					borderColor: "#59d05d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#59d05d",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [10, 20, 55, 75, 80, 48, 59, 55, 23, 107, 60, 87]
+				}, {
+					label: "Saves",
+					borderColor: "#f3545d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#f3545d",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [10, 30, 58, 79, 90, 105, 117, 160, 185, 210, 185, 194]
+				}]
+			},
+			options : {
+				responsive: true,
+				maintainAspectRatio: false,
+				legend: {
+					position: 'top',
+				},
+				tooltips: {
+					bodySpacing: 4,
+					mode:"nearest",
+					intersect: 0,
+					position:"nearest",
+					xPadding:10,
+					yPadding:10,
+					caretPadding:10
+				},
+				layout:{
+					padding:{left:15,right:15,top:15,bottom:15}
+				}
+			}
+		});
+
+		var myMultipleBarChart = new Chart(multipleBarChart, {
+			type: 'bar',
+			data: {
+				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+				datasets : [{
+					label: "Impressions",
+					backgroundColor: '#59d05d',
+					borderColor: '#59d05d',
+					data: [95, 100, 112, 101, 144, 159, 178, 156, 188, 190, 210, 245],
+				},{
+					label: "Visits",
+					backgroundColor: '#fdaf4b',
+					borderColor: '#fdaf4b',
+					data: [145, 256, 244, 233, 210, 279, 287, 253, 287, 299, 312,356],
+				}, {
+					label: "Saves",
+					backgroundColor: '#177dff',
+					borderColor: '#177dff',
+					data: [185, 279, 273, 287, 234, 312, 322, 286, 301, 320, 346, 399],
+				},{
+				label: "News Clicks",
+				backgroundColor: '#cc3300',
+				borderColor: '#cc3300',
+				data: [105, 250, 300, 280, 100, 500, 450, 350, 305, 420, 480, 355],
+			}],
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				legend: {
+					position : 'bottom'
+				},
+				title: {
+					display: true,
+					text: 'Clicks Stats'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false
+				},
+				responsive: true,
+				scales: {
+					xAxes: [{
+						stacked: true,
+					}],
+					yAxes: [{
+						stacked: true
+					}]
+				}
+			}
+		});
+
+</script>

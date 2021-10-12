@@ -1,0 +1,266 @@
+﻿
+@{
+    ViewBag.Title = "Admin | Edit Restaurant";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    List<City> Cities = (List<City>)ViewBag.Cities;
+
+
+}
+@model Restaurant
+<style>
+    .PanelClass {
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+
+    .LabelImage {
+        margin-left: 4%;
+        font-weight: bold;
+        font-size: 15px !important;
+        text-transform: capitalize;
+    }
+</style>
+
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="page-header">
+            <h4 class="page-title">Restaurants</h4>
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="/Admin/banners">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="/Admin/restaurant/@Model.Id">Edit Restaurant</a>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="padding:0 15% !important">
+                <div class="card">
+
+                    <form id="exampleValidation" enctype="multipart/form-data" method="post">
+                        <input hidden value="@Model.Id" name="Id" />
+
+
+                        <div class="card-body">
+                            <div class="PanelClass">
+
+
+                                <div class="form-group form-show-validation row">
+                                    <label class="col-md-3 col-sm-4 mt-sm-2 ">Cover Image <span class="required-label">*</span></label>
+                                    <div class="col-md-9 col-sm-8">
+                                        <div class="input-file input-file-image">
+                                            <label for="Image" class="label-input-file btn btn-icon btn-round btn-lg float-right u-pointer">
+                                                <img class="img-upload-preview img-circle img-Big" style="border-radius:0px !important;" src="/uploads/@Model.PhotoUrl" alt="preview">
+                                                <input hidden type="file" class="form-control form-control-file" value="" id="Image" name="PhotoUrl" accept="image/*">
+
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group form-show-validation row">
+                                    <label for="PhoneNumber" class="col-md-3 col-sm-4 mt-sm-2 ">Phone Number <span class="required-label">*</span></label>
+                                    <div class="col-md-9 col-sm-8">
+                                        <input type="text" maxlength="125" class="form-control allownumericwithoutdecimal" value="@Model.PhoneNumber" id="OrderId" name="OrderId" placeholder="Enter Phone Number" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-show-validation row">
+                                    <label for="RestaurantName" class="col-md-3 col-sm-4 mt-sm-2 ">Restaurant Name <span class="required-label">*</span></label>
+                                    <div class="col-md-9 col-sm-8">
+                                        <input class="form-control" maxlength="1000" required id="RestaurantName" name="RestaurantName" rows="5" value="@Model.RestaurantName" />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group form-show-validation row">
+                                    <label for="CityId" class="col-md-3 col-sm-4 mt-sm-2 ">City <span class="required-label">*</span></label>
+                                    <div class="col-md-9 col-sm-8">
+                                        <div class="select2-input">
+                                            <select id="CityId" name="CityId" class="form-control">
+                                                @{
+
+                                                    foreach (var city in Cities)
+                                                    {
+                                                        <option selected="@(Model.CityId == city.Id? true : false)" value="@city.Id">@city.CityName</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="card-action">
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="BtnSaveIndustry btn btn-primary float-right">Save</div>
+
+                                            @*<input class="btn btn-primary" type="submit" value="Save">*@
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Moment JS -->
+<script src="/assets/js/plugin/moment/moment.min.js"></script>
+<!-- jQuery Scrollbar -->
+<script src="/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<!-- DateTimePicker -->
+<script src="/assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js"></script>
+<!-- Select2 -->
+<script src="/assets/js/plugin/select2/select2.full.min.js"></script>
+<!-- jQuery Validation -->
+<script src="/assets/js/plugin/jquery.validate/jquery.validate.min.js"></script>
+<script src="/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+<!-- Ready Pro JS -->
+<script src="/assets/js/ready.min.js"></script>
+
+
+<script>
+    jQuery.extend(jQuery.validator.messages, {
+        equalTo: "Values do not match.",
+    });
+    $('#CityId').select2({
+        theme: "bootstrap"
+    });
+
+
+    $("#Image").on("change", function () {
+        $(this).parent('form').validate();
+    })
+
+
+    $(document).on('click', '.BtnSaveIndustry', function () {
+        $('#exampleValidation').submit();
+    });
+    $('#exampleValidation').submit(function (e) {
+        e.preventDefault();
+        $('input').removeClass('error');
+        $('select').removeClass('error');
+        $('textarea').removeClass('error');
+
+        var data = {};
+        var hasError = false;
+
+        var $inputs = $('#exampleValidation :input');
+
+        $inputs.each(function (index) {
+            var val = $(this).val();
+            if ($(this).prop('required')) {
+                if (val == "" || val == null) {
+                    $(this).addClass("error");
+                    hasError = true;
+                    return;
+                } else {
+                    data[$(this).attr("name")] = val;
+                }
+            } else {
+                data[$(this).attr("name")] = val;
+            }
+        });
+
+
+        //if ($("#Image").val() == "") {
+        //    $(".img-Big").css("border", "solid 1px red");
+        //    $(".img-Big").addClass("error");
+        //    hasError = true;
+        //}
+
+        if (hasError == true) {
+            var target = $('.error');
+            if (target.length) {
+                $('html,body').animate({
+                    scrollTop: target.offset().top - 160
+                }, 1000);
+                return false;
+            }
+            return;
+        }
+      
+        $.ajax({
+            url: '/Admin/SaveRestaurant/',
+            type: 'POST',
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            dataType: "json"
+        }).done(function (result) {
+            swal({
+                title: 'Success',
+                text: "Changes have been saved",
+                type: 'success',
+                buttons: {
+                    confirm: {
+                        text: 'OK',
+                        className: 'btn btn-success'
+                    },
+
+                }
+            });
+        });
+        e.preventDefault();
+    });
+
+    function readURL(input, image) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $(image).attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+
+   
+
+
+
+    $("#Image").change(function () {
+        readURL(this, ".img-Big");
+        $(".img-Big").css("border", "none");
+        $(this).removeClass('error');
+    });
+
+
+    $(document).on('click', 'input', function () {
+        $(this).removeClass('error');
+
+    });
+    $(document).on('click', 'select', function () {
+        $(this).removeClass('error');
+
+    });
+    $(document).on('click', 'textarea', function () {
+        $(this).removeClass('error');
+
+    });
+</script>
+

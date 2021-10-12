@@ -1,0 +1,516 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    @*<meta http-equiv="X-UA-Compatible" content="IE=edge" />*@
+    <title>@ViewBag.Title</title>
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/ready.min.css">
+
+
+
+
+
+
+    <script src="~/assets/js/core/jquery.3.2.1.min.js"></script>
+
+
+    <script src="~/assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: { "families": ["Montserrat:100,200,300,400,500,600,700,800,900"] },
+            custom: { "families": ["Flaticon", "LineAwesome"], urls: ['/assets/css/fonts.css'] },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+
+
+    <script src="~/assets/js/core/popper.min.js"></script>
+    <script src="~/assets/js/core/bootstrap.min.js"></script>
+
+
+    <script src="~/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script src="~/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <!-- Bootstrap Notify -->
+    <script src="~/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <!-- Bootstrap Toggle -->
+    <script src="~/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+    <!-- jQuery Scrollbar -->
+    <script src="~/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+    <script src="~/assets/js/ready.js"></script>
+
+    <!-- Moment JS -->
+    <script src="~/assets/js/plugin/moment/moment.min.js"></script>
+
+
+    <!-- DateTimePicker -->
+    <script src="~/assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js"></script>
+    <!-- Select2 -->
+    <script src="~/assets/js/plugin/select2/select2.full.min.js"></script>
+    <!-- Bootstrap Tagsinput -->
+    <script src="~/assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+
+    <script src="~/assets/js/ready.min.js"></script>
+    <!-- Ready Pro DEMO methods, don't include it in your project! -->
+
+
+    <script src="https://kit.fontawesome.com/72cf096213.js" crossorigin="anonymous"></script>
+
+    <style>
+
+        .dropdown-item {
+            cursor: pointer;
+        }
+
+
+        li {
+            cursor: pointer;
+        }
+
+        .LabelImage {
+            margin-left: 4%;
+            font-weight: bold;
+            font-size: 15px !important;
+            text-transform: capitalize;
+        }
+
+        .LabelActive {
+            color: white !important;
+            font-weight: bold;
+            background-color: #4C9900;
+            border-radius: 19px;
+            padding: 6px 31px;
+        }
+
+        .LabelRejected {
+            color: white !important;
+            font-weight: bold;
+            background-color: #ED2939;
+            border-radius: 19px;
+            padding: 6px 23px;
+        }
+
+        .LabelExpired {
+            color: white !important;
+            font-weight: bold;
+            background-color: #00B4EB;
+            border-radius: 19px;
+            padding: 6px 26px;
+        }
+
+        .LabelPending {
+            color: white !important;
+            font-weight: bold;
+            background-color: #FF5C00;
+            border-radius: 19px;
+            padding: 6px 23px;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <style>
+        .noselect {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                          supported by Chrome and Opera */
+        }
+
+        .TitlePage {
+            margin: 12px;
+            font-size: 19px !important;
+            font-weight: 600;
+        }
+
+        .dropdown-item:hover {
+            background-color: lightgray !important;
+            color: cornflowerblue !important;
+        }
+
+
+
+
+        .AnswersFields {
+            text-transform: capitalize;
+            font-weight: 800 !important;
+            font-size: 12px !important;
+            margin-left: 10px;
+        }
+
+        .input-group-text {
+            padding: 5% !important;
+        }
+
+        .CounrtyCode {
+            position: relative;
+            top: 15%;
+        }
+
+        .container-fluid {
+            padding-right: 0px !important;
+            padding-left: 0px !important;
+        }
+
+        .error {
+            border-color: red !important;
+        }
+
+
+        select {
+            height: calc(1.9rem + 3px) !important;
+        }
+
+        td {
+            font-size: 12px !important;
+            font-family: sans-serif !important;
+        }
+
+        .bg-teal {
+            background-color: #01a4a4 !important;
+        }
+
+        .color-blue {
+            color: #00beed;
+        }
+
+        .bg-blue {
+            background-color: #00beed;
+        }
+
+        .color-green {
+            color: #70b639;
+        }
+
+        .bg-green {
+            background-color: #70b639;
+        }
+
+        .color-lime {
+            color: #c3d700 !important;
+        }
+
+        .bg-lime {
+            background-color: #c3d700 !important;
+            color: #fff !important;
+        }
+
+        .color-package {
+            color: #f18d05 !important;
+        }
+
+        .bg-package {
+            background-color: #f18d05 !important;
+            border-color: #f18d05 !important;
+        }
+
+        .color-orange {
+            color: #f18d05 !important;
+        }
+
+        .bg-orange {
+            background-color: #f18d05 !important;
+        }
+
+        .color-magenta {
+            color: #d87a80 !important;
+        }
+
+        .bg-magenta {
+            background-color: #d87a80 !important;
+        }
+
+        .color-purple {
+            color: #8c6e9b !important;
+        }
+
+        .bg-purple {
+            background-color: #8c6e9b !important;
+        }
+
+        .color-grey {
+            color: #979797 !important;
+        }
+
+        .bg-grey {
+            background-color: #979797 !important;
+        }
+
+        .label {
+            color: white !important;
+            display: inline-block;
+            padding: 2px 5px 1px;
+            line-height: 1.5384616;
+            border: 1px solid transparent;
+            border-radius: 2px;
+        }
+
+        .timeline-date:before,
+        .timeline-date:after {
+            left: 24px;
+        }
+
+        .timeline-row,
+        .timeline-right .timeline-container:after,
+        .timeline-right:before,
+        .timeline-right:after,
+        .timeline-right .timeline-date:before,
+        .timeline-right .timeline-date:after {
+            left: auto;
+            right: 24px;
+            margin-left: 0;
+            margin-right: -2px;
+        }
+
+        .timeline-right .timeline-container:after {
+            margin-right: -1px;
+        }
+
+
+        .timeline-date {
+            background-color: #fff;
+            text-align: center;
+            background-color: #f5f5f5;
+            position: relative;
+            z-index: 1;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+            .timeline-date:before,
+            .timeline-date:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 50%;
+                margin-left: -2px;
+                background-color: #ccc;
+                height: 4px;
+                width: 4px;
+                border-radius: 50%;
+                z-index: 1;
+            }
+
+            .timeline-date:after {
+                top: auto;
+                bottom: 0;
+            }
+
+        .bg-lime {
+            background-color: #c3d700 !important;
+            color: #fff !important;
+        }
+
+        .Timelinephoto {
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            float: left;
+            margin-right: 11px;
+            z-index: 5;
+            border-radius: 50%;
+        }
+
+        .overlay {
+            display: block;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 50000;
+            background-color: white;
+        }
+
+            .overlay img {
+                transition-timing-function: ease-in-out;
+                position: absolute;
+                width: auto;
+                height: auto;
+                top: -50%;
+                left: -50%;
+                right: -50%;
+                bottom: -50%;
+                display: block;
+                margin: auto;
+                z-index: 999;
+            }
+
+        
+        .sidebar .nav > .nav-item:hover a:before {
+            background: #f9a000 !important;
+        }  
+    </style>
+    @*<div class="overlay">
+        <div class="loader">
+            <img src="/Content/Images/SitePics/loading.gif" alt="loading" />
+
+        </div>
+    </div>*@
+<div class="wrapper">
+    <div class="main-header">
+        <!-- Logo Header -->
+        <div style="        background-size: contain !important;
+        background-image: url('/assets/img/yallajeyelogo.jpg') !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;" class="logo-header">
+            <!--
+                Tip 1: You can change the background color of the logo header using: data-background-color="black | dark | blue | purple | light-blue | green | orange | red"
+            -->
+
+
+
+            <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+                    <i class="la la-bars"></i>
+                </span>
+            </button>
+
+            <button class="topbar-toggler more"><i class="la la-ellipsis-v"></i></button>
+
+
+
+
+
+        </div>
+        <!-- End Logo Header -->
+        <!-- Navbar Header -->
+        <nav class="navbar navbar-header navbar-expand-lg" data-background-color="orange" style=" background-color: #f9a000 !important">
+            <!--
+                Tip 1: You can change the background color of the navbar header using: data-background-color="black | dark | blue | purple | light-blue | green | orange | red"
+            -->
+            <div class="container-fluid">
+                <div class="navbar-minimize">
+                    <button class="btn btn-minimize btn-rounded">
+                        <i class="la la-navicon"></i>
+                    </button>
+                </div>
+                <h5 class="TitlePage">@ViewBag.HeadTitle</h5>
+                <ul id="NotificationsMenu" class="navbar-nav topbar-nav ml-md-auto align-items-center">
+                    <li class="nav-item dropdown hidden-caret submenu">
+                        <a class="nav-link dropdown-toggle" href="/admin/messages" id="navbarDropdown">
+                            <i class="flaticon-envelope-1"></i>
+
+
+
+                            <span class="notification">20</span>
+
+
+                        </a>
+
+                    </li>
+                    <li class="nav-item dropdown hidden-caret">
+
+                        <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            <i class="flaticon-alarm"></i>
+                            @{
+
+
+                                <span class="notification">3</span>
+
+
+                            }
+                        </a>
+                        <ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
+                            <li>
+                                <div class="dropdown-title">You have 50 pending businesses</div>
+                            </li>
+                            <li>
+                                <div class="notif-center">
+
+                                
+                                    <a href="#">
+                                        <div class="notif-icon notif-primary"><img style="width:40px;height:40px;border-radius:50px;margin-left:2%" src='/assets/img/Upload-Vector.jpg'> </div>
+                                        <div class="notif-content">
+                                            <span class="block">
+                                                BusinessName | Brief
+                                            </span>
+                                            <span class="time">02-05-2020</span>
+
+
+                                        </div>
+                                    </a>
+
+
+                                </div>
+                            </li>
+                            <li>
+                                <a class="see-all" href="/admin/businesses/?status=Pending">See all pending businesses<i class="la la-angle-right"></i> </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+    </div>
+    <!-- Sidebar -->
+   
+    <partial name="_AdminSideBar" />
+
+    <!-- End Sidebar -->
+    <div class="main-panel">
+        @RenderBody()
+
+        <footer class="footer">
+            <div class="container-fluid">
+                
+                <div class="copyright ml-auto">
+                    @DateTime.Now.Year made with <i class="la la-heart heart text-danger"></i> by Charbel Mahfouz
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div class="quick-sidebar">
+        <a href="#" class="close-quick-sidebar">
+            <i class="flaticon-cross"></i>
+        </a>
+
+    </div>
+
+    <!-- End Custom template -->
+</div>
+
+</body>
+
+</html>
+
+<script>
+   
+    $(".allownumericwithoutdecimal").on("keypress keyup blur", function (event) {
+        $(this).val($(this).val().replace(/[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
+
+    $(".allownumericwithdecimal").on("keypress keyup blur", function (event) {
+        //this.value = this.value.replace(/[^0-9\.]/g,'');
+        $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
+
+    $(window).on("load", function () {
+        $(".overlay").fadeOut(1000);
+
+    });
+
+</script>
+
+
+

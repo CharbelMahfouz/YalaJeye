@@ -1,0 +1,217 @@
+﻿
+
+
+@{
+    ViewBag.Title = "Admin | Menu Items";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var restaurantCategoryId = ViewBag.RestaurantCategoryId;
+}
+
+@model List<Item>
+
+<script src="/assets/js/plugin/moment/moment.min.js"></script>
+<script src="/assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js"></script>
+ jQuery Scrollbar
+<script src="/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+ Datatables
+<script src="/assets/js/plugin/datatables/datatables.min.js"></script>
+
+<script src="/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+ Sweet Alert
+ jQuery Validation
+<script src="../../assets/js/plugin/jquery.validate/jquery.validate.min.js"></script>
+<script src="/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+ Bootstrap Toggle
+<script src="/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+<div class="content">
+    <div class="container-fluid">
+        <div class="page-header">
+            <h4 class="page-title">Menu Items</h4>
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="/admin/MenuItems/">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4 class="card-title">All Menu Items</h4>
+                            </div>
+                            <div class="col-md-8" style="float:right">
+                                <button onclick="window.location.href = '/admin/addmenuitem/@restaurantCategoryId'" class="BtnCreateManager btn btn-primary" style="float:right" type="button">
+                                    Add Menu Item For This Restaurant
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="basic-datatables" class="display table-bordered table sideScroll">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+
+
+                                        <tr AdID='@item.Id' style="text-align:center">
+                                            <th>@item.Id</th>
+                                            <td style="text-align:center"><img style="width:150px;margin-left:2%" src="/uploads/@item.PhotoUrl" /></td>h>
+                                            <th>@item.ItemName</th>
+                                            <th>@item.Price</th>
+                                            <th>
+                                                <div class="btn-group dropleft">
+                                                    <button type="button" class="btn btn-default btn-border dropdown-toggle" style="padding:6px !important;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Action
+                                                    </button>
+                                                    <ul class="dropdown-menu" role="menu" x-placement="left-start" style="position: absolute; transform: translate3d(-2px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                        <li><a AdID='@item.Id' onclick="window.location.href='/admin/menuitem/@item.Id'" class='dropdown-item ViewAd'>View</a></li>
+                                                        <li><a AdID='@item.Id' class='dropdown-item DeleteCurrentItem'>Delete</a></li>
+                                                    </ul>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    }
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+jQuery Scrollbar
+<script src="/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+ Datatables
+<script src="/assets/js/plugin/datatables/datatables.min.js"></script>
+<script>
+
+    var SweetAlert2Demo = function () {
+
+        var initDemos = function () {
+
+            $(document).on('click', '.DeleteCurrentItem', function (e) {
+                swal({
+                    title: 'Are you sure do you want to delete this Category?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    buttons: {
+                        confirm: {
+                            text: 'Yes, delete it!',
+                            className: 'btn btn-success'
+                        },
+                        cancel: {
+                            visible: true,
+                            className: 'btn btn-danger'
+                        }
+                    }
+                }).then((Delete) => {
+                    if (Delete) {
+
+                        var row = $(this).closest("tr").get(0);
+                        var oTable = $('#basic-datatables').dataTable(); // JQuery dataTable function to delete the row from the table
+                        oTable.fnDeleteRow(oTable.fnGetPosition(row));// JQuery dataTable function to delete the rorestaurantCategoryIdestaurantCategoryIdrestaurantCategoryIdestaurantCategoryId from the table
+
+                        var PostData = {};
+
+                        PostData["ID"] = $(this).attr("AdID"); //getting the ID of the pressed button
+
+
+                        $.ajax({
+                            url: '/Admin/DeleteMenuItem',
+                            type: 'POST',
+                            async: true,
+                            data: PostData,
+                            dataType: "json"
+                        }).done(function (data) {
+
+                        });
+
+
+
+
+
+                    } else {
+                        swal.close();
+                    }
+                });
+            });
+
+
+        };
+
+        return {
+            //== Init
+            init: function () {
+                initDemos();
+            },
+        };
+    }();
+
+    SweetAlert2Demo.init();
+
+
+    $(document).ready(function () {
+                $('#basic-datatables').DataTable({
+                    aLengthMenu: [
+      [10, 50, 100, -1],
+      [10, 50, 100, "All"]
+                    ],
+                    iDisplayLength: -1
+                });
+            });
+
+
+</script>
+<script>
+    $("#addNewManager").validate({
+        validClass: "success",
+        rules: {
+            gender: { required: true },
+            ConfirmEmail: {
+                equalTo: "#Email"
+            },
+            birth: {
+                date: true
+            },
+            uploadImg: {
+                required: true,
+            },
+        },
+        highlight: function (element) {
+            $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+        },
+        success: function (element) {
+            $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+
+        },
+    });
+</script>
